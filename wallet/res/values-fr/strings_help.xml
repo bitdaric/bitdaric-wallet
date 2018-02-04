@@ -1,0 +1,107 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+  <string name="help_wallet">
+<![CDATA[
+		<p>
+			La partie supérieure gauche de l\'écran affiche votre solde en bitcoins ainsi qu\'une monnaie nationale choisie.
+			Toquer pour vous rendre vers la liste des monnaies nationales et toquer sur l\'une d\'elles pour la choisir par défaut.
+		</p>
+		<p>
+			Le code QR à droite contient votre adresse Bitcoin et peut être lu par un tiers.
+			Toquer sur le code QR pour l\'agrandir.
+		</p>
+		<p>
+			Le bas de l\'écran est couvert par votre liste de transactions, qui est vide initialement.
+			Les transactions en attente sont grisées jusqu\'à ce qu\'elles soient confirmées.
+			Toquer sur une transaction pour ajouter l\'adresse du destinataire ou de l\'envoyeur à votre carnet d\'adresses.
+		</p>
+		<p>
+			Vous pouvez envoyer ou recevoir des bitcoins en toquant sur les boutons dans la barre de menus.
+			Plus d\'options sont offertes dans le menu des options.
+		</p>
+	]]>
+	</string>
+  <string name="help_request_coins">
+<![CDATA[
+		<p>
+			Grâce à cette fenêtre de dialogue, vous pouvez demander des pièces à une autre personne (qui devrait déjà avoir installé Bitcoin Wallet).
+		</p>
+		<p>
+			Vous pouvez d\'abord saisir un montant de bitcoins à demander.
+		</p>
+		<p>
+			Ensuite, l\'autre personne pourra lire le code QR généré
+			Ou vous pourrez envoyer votre demande à une personne éloignée grâce au bouton Partager de la barre de menus.
+			L\'autre personne devra cliquer sur l\'URL Bitcoin.
+		</p>
+		<p>
+			Dans les deux cas, une fenêtre d\'envoi de pièces sera présentée préremplie à l\'autre personne.
+			Si elle accepte, elle n\'aura qu\'à envoyer le paiement.
+		</p>
+	]]>
+	</string>
+  <string name="help_send_coins">
+<![CDATA[
+		<p>
+			Vous avez commencé le processus d\'envoi de bitcoins.
+			Vous êtes arrivé ici de l\'écran principal ou en cliquant sur une URL Bitcoin dans votre navigateur mobile.
+		</p>
+		<p>
+			Saisissez d\'abord l\'adresse Bitcoin de destination.
+			L\'adresse sera complétée automatiquement pour les adresses enregistrées dans votre carnet d\'adresses.
+			Vous pouvez aussi lire des codes QR avec des adresses Bitcoin ou des demandes de bitcoins en pressant sur le bouton QR de la barre de menus.
+		</p>
+		<p>
+			Ensuite, vous verrez combien de bitcoins peuvent être dépensés actuellement.
+			Tout écart avec le solde de l\'écran principal n\'est pas encore confirmé et ne peut donc pas être dépensé.
+		</p>
+		<p>
+			Enfin, vous saisirez le montant à payer.
+		</p>
+		<p>
+			Vous pouvez saisir un paiement alors que vous êtes hors ligne.
+			Il sera envoyé lors du prochain lancement du Bitcoin Wallet.
+			Pour un traitement le plus rapide possible de votre paiement, assurez-vous d\'être bien connecté (c.-à-d. sur un WLAN).
+		</p>
+		<p>
+			Note :
+			Les paiements sont irréversibles !
+			Toujours vérifier l\'adresse de destination.
+		</p>
+	]]>
+	</string>
+  <string name="help_safety">
+<![CDATA[
+		<p>
+			<b>Notes de sécurité importantes :</b>
+		</p>
+		<p>
+			Les bitcoins sont stockés sur l\'appareil.
+			<b>Si vous le perdez, vous perdrez vos bitcoins.</b>
+		</p>
+		<p>
+			Cela signifie que vous devez <b>sauvegarder votre porte-monnaie</b> !
+			Utilisez la fonction de sauvegarde de l\'appli plutôt qu\'une appli de sauvegarde tierce.
+			Gardez votre sauvegarde en lieu sûr et souvenez-vous du mot de passe.
+		</p>
+		<p>
+			<b>Avant de désinstaller l\'appli</b> (ou d\'en effacer les données ou d\'effacer les données de votre appareil), <b>transférez vos bitcoins vers un autre porte-monnaie</b>.
+			Les bitcoins restants seront perdus.
+		</p>
+		<p>
+			<b>Les paiements sont irréversibles</b>.
+			Si vous envoyez vos bitcoins dans le vide, il n\'y a presque aucun moyen de les récupérer.
+		</p>
+		<p>
+			<b>Assurez la sécurité de votre appareil mobile !</b>
+			Ne prenez pas le contrôle de la racine (root) de votre appareil.
+			N\'installez que des applications de confiance.
+			Des applications malveillantes pourraient essayer de voler votre porte-monnaie.
+		</p>
+		<p>
+			Minimisez les risques !
+			<b>N\'utilisez l\'appli que pour des petits montants</b> pour un usage quotidien.
+		</p>
+	]]>
+	</string>
+</resources>

@@ -1,0 +1,180 @@
+import groovy.io.FileType
+import groovy.xml.XmlUtil
+
+apply plugin: 'com.android.application'
+apply plugin: 'androidsvgdrawable'
+
+dependencies {
+    compile(project(':integration-android')) {
+        exclude(group: 'com.google.android', module: 'android')
+    }
+    compile('com.android.support:support-v13:25.1.1') {
+        exclude(group: 'com.android.support', module: 'support-fragment')
+        exclude(group: 'com.android.support', module: 'support-media-compat')
+    }
+    compile('com.github.tony19:logback-android-classic:1.1.1-6') {
+        exclude(group: 'com.google.android', module: 'android')
+    }
+    compile 'com.android.support:support-annotations:25.1.1'
+    compile 'com.android.support:support-compat:25.1.1'
+    compile 'com.android.support:support-core-utils:25.1.1'
+    compile 'com.android.support:recyclerview-v7:25.1.1'
+    compile 'com.android.support:cardview-v7:25.1.1'
+    compile 'org.libdarxj:libdarxj-core:0.14-SNAPSHOT'
+    compile 'com.google.protobuf:protobuf-java:2.6.1'
+    compile 'com.google.guava:guava:20.0'
+    compile 'com.google.zxing:core:3.3.0'
+    compile 'com.squareup.okhttp:okhttp:2.7.5'
+    compile 'com.squareup.okhttp:logging-interceptor:2.7.5'
+    compile 'com.squareup.moshi:moshi:1.3.1'
+    compile 'com.netki:wallet-name-resolver:0.1.3'
+    compile 'org.slf4j:slf4j-api:1.7.22'
+    compile 'com.github.tony19:logback-android-core:1.1.1-6'
+    compile 'com.google.code.findbugs:jsr305:2.0.3'
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    testCompile 'junit:junit:4.12'
+}
+
+ext {
+    archivesBaseName = 'bitdaric-wallet'
+}
+
+android {
+    compileSdkVersion 'android-25'
+    buildToolsVersion '26.0.0'
+    compileSdkVersion 25
+
+    lintOptions {
+        abortOnError false
+        disable 'MissingTranslation'
+    }
+
+    defaultConfig {
+        generatedDensities = ['hdpi', 'xhdpi']
+        applicationId 'com.bitdaric.wallet'
+        versionCode 100
+        versionName '1.0.0'
+        minSdkVersion 16
+        targetSdkVersion 25
+    }
+
+    buildTypes {
+        all {
+            minifyEnabled true
+            proguardFile 'proguard.cfg'
+        }
+        debug {
+            debuggable true
+        }
+    }
+
+    productFlavors {
+        _testnet {
+            applicationId 'com.bitdaric.wallet.test'
+        }
+
+        _mainnet {
+            applicationId 'com.bitdaric.wallet'
+        }
+    }
+
+    sourceSets {
+        main {
+            manifest.srcFile 'AndroidManifest.xml'
+            java.srcDirs = ['src']
+            res.srcDirs = ['res']
+            assets.srcDirs = ['assets']
+            jniLibs.srcDirs = ['libs']
+        }
+        test {
+            java.srcDirs = ['test']
+            resources.srcDirs = ['test']
+        }
+    }
+
+    packagingOptions {
+        exclude 'lib/x86_64/darwin/libscrypt.dylib'
+        exclude 'lib/x86_64/freebsd/libscrypt.so'
+        exclude 'lib/x86_64/linux/libscrypt.so'
+        exclude 'com/google/thirdparty/publicsuffix/PublicSuffixPatterns.gwt.xml'
+        exclude 'com/google/thirdparty/publicsuffix/PublicSuffixType.gwt.xml'
+        exclude 'org/bitcoinj/crypto/mnemonic/wordlist/english.txt'
+        exclude 'org/bitcoinj/crypto/cacerts'
+        exclude 'org.bitcoin.production.checkpoints.txt'
+        exclude 'org.bitcoin.test.checkpoints.txt'
+        exclude 'messages.properties'
+        exclude 'META-INF/services/sun.net.spi.nameservice.NameServiceDescriptor'
+    }
+}
+/*
+task svgToPngMipmap(type: fr.avianey.androidsvgdrawable.gradle.SvgDrawableTask) {
+    from = files('graphics/mipmap')
+    to = file('res')
+    targetedDensities = ['hdpi', 'xhdpi', 'xxhdpi', 'xxxhdpi']
+    outputFormat = 'PNG'
+    outputType = 'mipmap'
+}
+*/
+android.applicationVariants.all { variant ->
+    variant.mergeResources.doLast {
+        LangUpdater.main(new File("${buildDir}/intermediates/res/merged/${variant.dirName}/"))
+    }
+}
+
+class LangUpdater {
+    static def main(File dir) {
+        def list = []
+        dir.eachFileRecurse(FileType.FILES) { file ->
+            list << file
+        }
+        doReplace(list)
+    }
+
+    static def doReplace(ArrayList<File> f) {
+        def toDo = []
+        f.each {
+            if (it.getName().matches("values(-\\w{2})?(-\\w{2})?.xml")) {
+                toDo << it
+            }
+        }
+
+        toDo.each {
+            def xml = replaceStrings(it)
+            def writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(it.getAbsolutePath()), "UTF-8"))
+            XmlUtil.serialize(xml, writer)
+        }
+    }
+
+    static def replaceStrings(File f) {
+        def resources = new XmlSlurper().parse(f)
+        resources.string.each {
+            it.replaceBody(tryAllReplacements(it.text()))
+        }
+        return resources
+    }
+
+    static def tryAllReplacements(String s) {
+        String res = s;
+        // Do some specifics first
+        res = res.replaceAll("bitcoinj", "libdarxj")
+        res = res.replaceAll("bitboy", "bitdaric.com")
+
+        // Esperanto specifics
+        res = res.replaceAll("Bitmon", "Darxmon")
+        res = res.replaceAll("bitmon", "Darxmon")
+
+        // Japanese specifics
+        res = res.replaceAll("ビット", "ビット")
+
+        // Chinese specifics
+        res = res.replaceAll("比特", "比特")
+
+        // And the rest
+        res = res.replaceAll("BTC", "DARX")
+        res = res.replaceAll("bitcoin", "bitdaric")
+        res = res.replaceAll("Bitcoin", "BitDaric")
+
+        return res;
+    }
+}
