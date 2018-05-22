@@ -53,8 +53,8 @@ android {
     defaultConfig {
         generatedDensities = ['hdpi', 'xhdpi']
         applicationId 'com.bitdaric.wallet'
-        versionCode 150
-        versionName '1.5.0'
+        versionCode 151
+        versionName '1.5.1'
         minSdkVersion 16
         targetSdkVersion 25
     }
