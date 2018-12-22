@@ -97,26 +97,26 @@ public final class Constants {
     public static final long BACKUP_MAX_CHARS = 10000000;
 
     /** Base URL for browsing transactions, blocks or addresses. */
-    private static final String EXPLORE_BASE_URL_TX_PROD = "https://explorer.bitdaric.com/tx/";
+    private static final String EXPLORE_BASE_URL_TX_PROD = "https://explorer.bitdaric.live/tx/";
     private static final String EXPLORE_BASE_URL_TX_TEST = "";
-    private static final String EXPLORE_BASE_URL_ADDR_PROD = "https://explorer.bitdaric.com/address/";
+    private static final String EXPLORE_BASE_URL_ADDR_PROD = "https://explorer.bitdaric.live/address/";
     private static final String EXPLORE_BASE_URL_ADDR_TEST = "";
-    private static final String EXPLORE_BASE_URL_BLOCK_PROD = "https://explorer.bitdaric.com/";
+    private static final String EXPLORE_BASE_URL_BLOCK_PROD = "https://explorer.bitdaric.live/";
     private static final String EXPLORE_BASE_URL_BLOCK_TEST = "";
     public static final String EXPLORE_BASE_URL_TX = TEST ? EXPLORE_BASE_URL_TX_TEST  : EXPLORE_BASE_URL_TX_PROD;
     public static final String EXPLORE_BASE_URL_ADDR = TEST ? EXPLORE_BASE_URL_ADDR_TEST : EXPLORE_BASE_URL_ADDR_PROD;
     public static final String EXPLORE_BASE_URL_BLOCK = TEST ? EXPLORE_BASE_URL_BLOCK_TEST : EXPLORE_BASE_URL_BLOCK_PROD;
 
-    public static final String DARXCHAIN_API_URL = "https://explorer.bitdaric.com/api/v1/unspent/";
+    public static final String DARXCHAIN_API_URL = "https://explorer.bitdaric.live/api/v1/unspent/";
 
     /** Currency code for the wallet name resolver. */
     public static final String WALLET_NAME_CURRENCY_CODE = NETWORK_PARAMETERS.getId()
             .equals(NetworkParameters.ID_MAINNET) ? "darx" : "darxt";
 
     /** URL to fetch version alerts from. */
-    public static final HttpUrl VERSION_URL = HttpUrl.parse("http://www.bitdaric.com/wallet-version");
+    public static final HttpUrl VERSION_URL = HttpUrl.parse("http://www.bitdaric.live/wallet-version");
     /** URL to fetch dynamic fees from. */
-    public static final HttpUrl DYNAMIC_FEES_URL = HttpUrl.parse("http://www.bitdaric.com/wallet-fees");
+    public static final HttpUrl DYNAMIC_FEES_URL = HttpUrl.parse("http://www.bitdaric.live/wallet-fees");
 
     /** MIME type used for transmitting single transactions. */
     public static final String MIMETYPE_TRANSACTION = "application/x-darxtx";
@@ -138,7 +138,7 @@ public final class Constants {
             ? "" : null;
 
     /** Recipient e-mail address for reports. */
-    public static final String REPORT_EMAIL = "support@bitdaric.com";
+    public static final String REPORT_EMAIL = "support@bitdaric.live";
 
     /** Subject line for manually reported issues. */
     public static final String REPORT_SUBJECT_ISSUE = "Reported issue";

@@ -158,7 +158,7 @@ class LangUpdater {
         String res = s;
         // Do some specifics first
         res = res.replaceAll("bitcoinj", "libdarxj")
-        res = res.replaceAll("bitboy", "bitdaric.com")
+        res = res.replaceAll("bitboy", "bitdaric.live")
 
         // Esperanto specifics
         res = res.replaceAll("Bitmon", "Darxmon")
